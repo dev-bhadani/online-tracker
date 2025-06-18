@@ -41,17 +41,28 @@ jobs:
       - name: Run Playwright install (browsers)
         run: npx playwright install --with-deps
 
-      - name: Setup DB schema
-        run: psql postgresql://postgres:secret@localhost:5432/studip -f ./init.sql
+#      - name: Setup DB schema
+#        run: psql postgresql://postgres:secret@localhost:5432/studip -f ./init.sql
+
+      - name: Setup Supabase DB schema
+        env:
+          PGPASSWORD: ${{ secrets.DB_PASSWORD }}
+        run: >
+          psql
+          -h ${{ secrets.DB_HOST }}
+          -p ${{ secrets.DB_PORT }}
+          -U ${{ secrets.DB_USER }}
+          -d ${{ secrets.DB_NAME }}
+          -f ./init.sql
 
       - name: Run tests
         env:
           STUDIP_URL: https://studip.hs-schmalkalden.de
           STUDIP_USER: ${{ secrets.STUDIP_USER }}
           STUDIP_PASS: ${{ secrets.STUDIP_PASS }}
-          DB_HOST: localhost
-          DB_PORT: 5432
-          DB_USER: postgres
-          DB_PASSWORD: secret
-          DB_NAME: studip
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_PORT: ${{ secrets.DB_PORT }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+          DB_NAME: ${{ secrets.DB_NAME }}
         run: npx playwright test
