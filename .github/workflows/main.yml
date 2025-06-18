@@ -46,13 +46,9 @@ jobs:
 
       - name: Setup Supabase DB schema
         env:
-          PGPASSWORD: ${{ secrets.DB_PASSWORD }}
+          PGPASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
         run: >
-          psql
-          -h ${{ secrets.DB_HOST }}
-          -p ${{ secrets.DB_PORT }}
-          -U ${{ secrets.DB_USER }}
-          -d ${{ secrets.DB_NAME }}
+          psql "postgresql://${{ secrets.SUPABASE_DB_USER }}:${{ secrets.SUPABASE_DB_PASSWORD }}@${{ secrets.SUPABASE_DB_HOST }}:5432/${{ secrets.SUPABASE_DB_NAME }}?sslmode=require"
           -f ./init.sql
 
       - name: Run tests
