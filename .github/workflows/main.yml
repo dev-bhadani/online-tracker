@@ -47,7 +47,7 @@ jobs:
         env:
           PGPASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}
         run: >
-          psql "postgresql://${{ secrets.SUPABASE_DB_USER }}:${{ secrets.SUPABASE_DB_PASSWORD }}@${{ secrets.SUPABASE_DB_HOST }}:5432/${{ secrets.SUPABASE_DB_NAME }}?sslmode=require"
+          psql "postgresql://${{ secrets.SUPABASE_DB_USER }}:${{ secrets.SUPABASE_DB_PASSWORD }}@${{ secrets.SUPABASE_DB_HOST }}:5432/${{ secrets.SUPABASE_DB_NAME }}"
           -f ./init.sql
 
       - name: Run tests
