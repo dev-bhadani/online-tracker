@@ -26,6 +26,11 @@ jobs:
       - name: Install Playwright browsers
         run: npx playwright install --with-deps
 
+      - name: Setup DB schema (if missing)
+        env:
+          SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
+        run: npx ts-node src/setup-db.ts
+
       - name: Run Playwright tests
         env:
           STUDIP_URL: https://studip.hs-schmalkalden.de
