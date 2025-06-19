@@ -6,7 +6,7 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "setup-db": "ts-node src/setup-db.ts",
-    "test": "playwright test"
+    "test": "npx playwright test"
   },
   "keywords": [],
   "author": "",
