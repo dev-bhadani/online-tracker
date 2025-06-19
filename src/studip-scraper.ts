@@ -61,7 +61,9 @@ export async function scrapeOnlineUsers(): Promise<OnlineUser[]> {
         if (!hasNext) break;
         pageIndex++;
     }
-
+    await expect(page.getByRole('button', { name: 'Profile menu' })).toBeVisible();
+    await page.getByRole('button', { name: 'Profile menu' }).click();
+    await page.getByRole('link', { name: 'Logout' }).click();
     await browser.close();
     return allUsers;
 }
