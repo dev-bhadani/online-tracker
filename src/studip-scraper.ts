@@ -1,6 +1,6 @@
 import {config} from './config';
-import {Page} from "playwright";
-import {expect} from "playwright/test";
+import {Page, chromium} from 'playwright';
+import {expect} from 'playwright/test';
 
 export type OnlineUser = {
     username: string;
@@ -13,11 +13,9 @@ export async function login(page: Page): Promise<void> {
     await page.getByRole('button', {name: 'English'}).click();
 
     await expect(page.getByRole('textbox', {name: 'Username*'})).toBeVisible();
-    await page.getByRole('textbox', {name: 'Username*'}).click();
     await page.getByRole('textbox', {name: 'Username*'}).fill(config.studip.user);
 
     await expect(page.getByRole('textbox', {name: 'Password* Show password'})).toBeVisible();
-    await page.getByRole('textbox', {name: 'Password* Show password'}).click();
     await page.getByRole('textbox', {name: 'Password* Show password'}).fill(config.studip.pass);
 
     await expect(page.getByRole('button', {name: 'Login'})).toBeVisible();
@@ -45,4 +43,25 @@ export async function scrapePage(page: Page, pageIndex: number): Promise<OnlineU
             })
             .filter(u => u.username !== '')
     );
+}
+
+export async function scrapeOnlineUsers(): Promise<OnlineUser[]> {
+    const browser = await chromium.launch({headless: true});
+    const page = await browser.newPage();
+
+    await login(page);
+    const allUsers: OnlineUser[] = [];
+    let pageIndex = 0;
+
+    while (true) {
+        const users = await scrapePage(page, pageIndex);
+        allUsers.push(...users);
+
+        const hasNext = await page.$('.pagination li.next a');
+        if (!hasNext) break;
+        pageIndex++;
+    }
+
+    await browser.close();
+    return allUsers;
 }
