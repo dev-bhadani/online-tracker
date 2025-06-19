@@ -10,7 +10,7 @@ on:
     - cron: '*/10 * * * *'
 
 jobs:
-  test:
+  scraper:
     runs-on: ubuntu-latest
 
     steps:
