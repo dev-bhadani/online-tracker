@@ -8,16 +8,18 @@ const pool = new Pool({
 
 export async function upsertLatestLogin(username: string, fullName: string): Promise<void> {
     await pool.query(
-        `INSERT INTO user_logins (username, last_login_at, last_seen_at)
-         VALUES ($1, NOW(), NOW()) ON CONFLICT (username)
+        `INSERT INTO user_logins (username, full_name, last_login_at, last_seen_at)
+         VALUES ($1, $2, NOW(), NOW()) ON CONFLICT (username)
      DO
-        UPDATE SET
-            last_seen_at = NOW(),
-            last_login_at = CASE
-            WHEN user_logins.last_seen_at IS NULL OR NOW() - user_logins.last_seen_at > INTERVAL '10 minutes'
-            THEN NOW()
-            ELSE user_logins.last_login_at
-        END;`,
+        UPDATE SET last_seen_at = NOW()`,
+        [username, fullName]
+    );
+}
+
+export async function logUserSession(username: string): Promise<void> {
+    await pool.query(
+        `INSERT INTO user_sessions (username, seen_at)
+         VALUES ($1, NOW())`,
         [username]
     );
 }
