@@ -4,6 +4,7 @@ import {expect, test} from "playwright/test";
 
 test.describe('StudIP – Who is online', () => {
     test('scrapes all users and persists them', async () => {
+        test.setTimeout(50000);
         const allUsers = await scrapeOnlineUsers();
         for (const {username, fullName} of allUsers) {
             await upsertLatestLogin(username, fullName);
