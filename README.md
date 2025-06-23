@@ -18,7 +18,7 @@ Track who is online in [Stud.IP](https://studip.hs-schmalkalden.de), log their a
 #### 1. Clone and Install
 
 ```bash
-git clone https://github.com/your-username/studip-online-tracker.git
+git clone https://github.com/dev-bhadani/online-tracker.git
 cd studip-online-tracker
 npm install
 ```
