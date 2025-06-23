@@ -4,7 +4,7 @@ Track who is online in [Stud.IP](https://studip.hs-schmalkalden.de), log their a
 
 ---
 
-### 🔧 Features
+### Features
 
 - Scrape "Who is online?" from Stud.IP
 - Track `last_login`, `last_seen`, `login_at`, `logout_at`, and session durations
@@ -57,7 +57,7 @@ npm run test
 ```
 ---
 
-### ☁️ GitHub Actions
+### GitHub Actions
 
 - CI is triggered on `main`/`master` push and every 10 minutes via scheduled workflow
 - Data is scraped, saved to Supabase, and logs are auto-cleaned using GitHub API
