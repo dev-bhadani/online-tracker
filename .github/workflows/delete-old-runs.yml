@@ -1,8 +1,8 @@
 name: Cleanup Old Workflow Runs
 
 on:
-#  schedule:
-#    - cron: '0 3 * * *' 
+  schedule:
+    - cron: '0 3 * * 6'
   workflow_dispatch:
 
 jobs:
@@ -13,5 +13,5 @@ jobs:
         uses: Mattraks/delete-workflow-runs@v2
         with:
           token: ${{secrets.PERSONAL_ACCESS_TOKEN}}
-          retain_days: 3    
-          keep_minimum_runs: 5 
+          retain_days: 2
+          keep_minimum_runs: 5
