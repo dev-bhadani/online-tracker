@@ -1,6 +1,6 @@
 # StudIP Online Tracker
 
-Track who is online in [Stud.IP](https://studip.hs-schmalkalden.de), log their activity, and gain insights into user sessions all backed by **Supabase**, **Playwright**, and **PostgreSQL**.
+Track who is online in [Stud.IP], log their activity, and gain insights into user sessions all backed by **Supabase**, **Playwright**, and **PostgreSQL**.
 
 ---
 
@@ -29,7 +29,7 @@ Create a `.env` file:
 
 ```env
 SUPABASE_DB_URL=postgresql://postgres:<password>@db.<hash>.supabase.co:5432/postgres
-STUDIP_URL=https://studip.hs-schmalkalden.de
+STUDIP_URL=STUDIP_URL=https://your-studip-instance.url
 STUDIP_USER=your_username
 STUDIP_PASS=your_password
 ```
