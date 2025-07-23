@@ -1,6 +1,6 @@
 # StudIP Online Tracker
 
-Track who is online in [Stud.IP], log their activity, and gain insights into user sessions all backed by **Supabase**, **Playwright**, and **PostgreSQL**.
+Track who is online in Stud.IP, log their activity, and gain insights into user sessions all backed by **Supabase**, **Playwright**, and **PostgreSQL**.
 
 ---
 
