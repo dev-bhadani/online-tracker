@@ -35,7 +35,7 @@ jobs:
 
       - name: Run Playwright tests
         env:
-          STUDIP_URL: https://studip.hs-schmalkalden.de
+          STUDIP_URL: ${{ secrets.STUDIP_URL }}
           STUDIP_USER: ${{ secrets.STUDIP_USER }}
           STUDIP_PASS: ${{ secrets.STUDIP_PASS }}
           SUPABASE_DB_URL: ${{ secrets.SUPABASE_DB_URL }}
