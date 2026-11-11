@@ -29,14 +29,13 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
-          node-version: 18
-          cache: npm
+          node-version: 24
 
       - name: Install dependencies
         run: npm ci
 
       - name: Install Playwright browsers
-        run: npx playwright install --with-deps --only-shell chromium
+        run: npx playwright install --only-shell chromium
 
       - name: Setup DB schema (if missing)
         env:
