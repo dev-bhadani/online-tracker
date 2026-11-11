@@ -1,5 +1,5 @@
 import {config} from './config';
-import {Page, chromium} from 'playwright';
+import {LaunchOptions, Page, chromium} from 'playwright';
 import {expect} from 'playwright/test';
 
 export type OnlineUser = {
@@ -9,14 +9,13 @@ export type OnlineUser = {
 
 export async function login(page: Page): Promise<void> {
     await page.goto(`${config.studip.url}/index.php`);
-    await expect(page.getByRole('button', {name: 'English'})).toBeVisible();
-    await page.getByRole('button', {name: 'English'}).click();
+    await page.locator('#languages').selectOption('English');
 
-    await expect(page.getByRole('textbox', {name: 'Username*'})).toBeVisible();
-    await page.getByRole('textbox', {name: 'Username*'}).fill(config.studip.user);
+    await expect(page.getByRole('textbox', {name: 'Username'})).toBeVisible();
+    await page.getByRole('textbox', {name: 'Username'}).fill(config.studip.user);
 
-    await expect(page.getByRole('textbox', {name: 'Password* Show password'})).toBeVisible();
-    await page.getByRole('textbox', {name: 'Password* Show password'}).fill(config.studip.pass);
+    await expect(page.getByRole('textbox', {name: 'Password'})).toBeVisible();
+    await page.getByRole('textbox', {name: 'Password'}).fill(config.studip.pass);
 
     await expect(page.getByRole('button', {name: 'Login'})).toBeVisible();
     await page.getByRole('button', {name: 'Login'}).click();
@@ -45,8 +44,8 @@ export async function scrapePage(page: Page, pageIndex: number): Promise<OnlineU
     );
 }
 
-export async function scrapeOnlineUsers(): Promise<OnlineUser[]> {
-    const browser = await chromium.launch({headless: true});
+export async function scrapeOnlineUsers(launchOptions: LaunchOptions = {headless: true}): Promise<OnlineUser[]> {
+    const browser = await chromium.launch(launchOptions);
     const page = await browser.newPage();
 
     await login(page);

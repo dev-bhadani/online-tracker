@@ -55,6 +55,14 @@ npm run start
 ```bash
 npm run test
 ```
+
+#### Watch the scraper in a browser (no DB writes)
+
+```bash
+npm run preview
+```
+
+Only needs `STUDIP_URL`, `STUDIP_USER` and `STUDIP_PASS` in `.env`.
 ---
 
 ### GitHub Actions

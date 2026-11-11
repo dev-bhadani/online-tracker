@@ -6,6 +6,7 @@
   "scripts": {
     "start": "ts-node src/index.ts",
     "setup-db": "ts-node src/setup-db.ts",
+    "preview": "ts-node src/preview.ts",
     "test": "npx playwright test"
   },
   "keywords": [],
