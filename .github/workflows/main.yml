@@ -1,21 +1,14 @@
-name: Scheduled Job
+name: Scheduled Job 
 
 on:
   push:
-    branches:
-      - main
-      - master
-
+    branches: [ main, master ]
   pull_request:
-    branches:
-      - main
-      - master
-
+    branches: [ main, master ]
   workflow_dispatch:
-
   schedule:
-    - cron: '3-59/10 * * * *'
-
+    - cron: '*/10 * * * *'
+    
 jobs:
   scraper:
     runs-on: ubuntu-24.04
