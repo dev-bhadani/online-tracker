@@ -23,7 +23,7 @@ export async function login(page: Page): Promise<void> {
     await expect(page.getByRole('link', {name: 'Who is online?'})).toBeVisible();
     await page.getByRole('link', {name: 'Who is online?'}).click();
 
-    await expect(page.getByLabel('Sidebar').getByText('Who is online?')).toBeVisible();
+    await expect(page.getByRole('table', {name: 'Other users'})).toBeVisible();
 }
 
 export async function scrapePage(page: Page, pageIndex: number): Promise<OnlineUser[]> {
@@ -62,7 +62,7 @@ export async function scrapeOnlineUsers(launchOptions: LaunchOptions = {headless
     }
     await expect(page.getByRole('button', { name: 'Profile menu' })).toBeVisible();
     await page.getByRole('button', { name: 'Profile menu' }).click();
-    await page.getByRole('link', { name: 'Logout' }).click();
+    await page.getByRole('button', { name: 'Logout' }).click();
     await browser.close();
     return allUsers;
 }
