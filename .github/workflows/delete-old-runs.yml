@@ -1,9 +1,12 @@
 name: Cleanup Old Workflow Runs
 
 on:
-  schedule:
-    - cron: '0 3 * * 6'
   workflow_dispatch:
+    inputs:
+      source:
+        description: What started this run
+        type: string
+        default: manual
 
 jobs:
   cleanup:
