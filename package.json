@@ -16,11 +16,11 @@
   "dependencies": {
     "dotenv": "^18.0.10",
     "luxon": "^3.7.2",
-    "pg": "^8.20.0"
+    "pg": "^8.23.1"
   },
   "devDependencies": {
     "@types/luxon": "^3.7.6",
-    "@types/pg": "^8.18.0",
+    "@types/pg": "^8.23.1",
     "playwright": "^1.65.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
